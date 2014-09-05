@@ -1,0 +1,14 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
+TAGS=$@
+
+function build_image() {
+  local tag=$1
+  docker build -t $tag $tag
+}
+
+for t in $TAGS; do
+  echo "Building $t image"
+  build_image $t
+done
