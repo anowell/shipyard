@@ -8,7 +8,12 @@ Usage
 
 Create and use aliases for the ChefDK tools:
 
-    alias knife="docker run --rm -t -i -e OPSCODE_USER=\$USER -v \$(pwd):/data chefdk knife"
-    
-    knife status
+    for CMD in chef knife berks kitchen rubocop foodcritic; do
+      alias $CMD="docker run --rm -t -i -e OPSCODE_USER=\$USER -v \$(pwd):/data chefdk $CMD";
+    done
 
+    # now use these tools similar to how you would if locally installed
+    knife status
+    berks version
+    chef generate cookbook NAME
+    
